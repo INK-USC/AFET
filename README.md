@@ -1,3 +1,10 @@
+## AFET
+AFET: Automatic Fine-Grained Entity Typing by Hierarchical Partial-Label Embedding
+
+## Publication
+
+* Xiang Ren, Wenqi He, Meng Qu, Lifu Huang, Heng Ji, Jiawei Han, "**AFET: Automatic Fine-Grained Entity Typing by Hierarchical Partial-Label Embedding**”, EMNLP, 2016
+
 ## Requirements
 
 We will take Ubuntu for example.
