@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -lm -pthread -Ofast -march=native -Wall -funroll-loops -Wno-unused-result -lgsl -lm -lgslcblas
+CFLAGS = -lm -pthread -O2 -march=native -Wall -funroll-loops -Wno-unused-result -lgsl -lm -lgslcblas
 
 pl_warp: pl_warp.cpp utils.o hierarchy.o
 	$(CC) $(CFLAGS) -o pl_warp pl_warp.cpp utils.o hierarchy.o
