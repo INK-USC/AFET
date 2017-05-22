@@ -1,8 +1,7 @@
 
 import json
 import sys
-from corenlp import StanfordCoreNLP
-
+from stanza.nlp.corenlp import CoreNLPClient
 
 class NLPParser(object):
     """
@@ -12,8 +11,8 @@ class NLPParser(object):
     parser: StanfordCoreNLP
         the Staford Core NLP parser
     """
-    def __init__(self, corenlp_dir):
-        self.parser = StanfordCoreNLP(corenlp_dir)
+    def __init__(self):
+        self.parser = CoreNLPClient(default_annotators=['ssplit', 'tokenize', 'pos', 'depparse'])
 
     def parse(self, sent):
         """
@@ -21,21 +20,22 @@ class NLPParser(object):
         :param sent: string
         :return: a list of tuple (word, pos, dependency)
         """
-        result = self.parser.raw_parse(sent)
+        result = self.parser.annotate(sent)
         tuples = []
-        for s in result['sentences']:
-            word, pos, dependency = [], [], []
-            for dep in s['dependencies']:
-                dependency.append({'type': dep[0], 'dep': int(dep[2])-1, 'gov': int(dep[4])-1})
-            for w in s['words']:
-                word.append(w[0])
-                pos.append(w[1]['PartOfSpeech'])
-            tuples.append((word, pos, dependency))
+        for s in result.sentences:
+            word, pos, dep = [], [], []
+            for token in s:
+                word += [token.word]
+                pos += [token.pos]
+            edges = s.depparse(mode='enhanced').to_json()
+            for e in edges:
+                dep.append({'type': e['dep'], 'dep': e['dependent']-1, 'gov': e['governer']-1})
+            tuples.append((word, pos, dep))
         return tuples
 
 def parse(filename, output):
     with open(filename) as f, open(output, 'w') as g:
-        parser = NLPParser('DataProcessor/stanford-corenlp-python/corenlp/stanford-corenlp-full-2015-04-20')
+        parser = NLPParser()
         count=0
         for line in f:
             sent = json.loads(line.strip('\r\n'))
