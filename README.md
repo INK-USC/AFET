@@ -15,17 +15,16 @@ We will take Ubuntu for example.
 $ sudo apt-get install python
 ```
 
-* [stanford coreNLP 3.5.2](http://stanfordnlp.github.io/CoreNLP/) and its [python wrapper](https://github.com/dnc1994/stanford-corenlp-python). Please put the library in folder DataProcessor/.
+* [stanford coreNLP 3.7.0](http://stanfordnlp.github.io/CoreNLP/) and its [python wrapper](https://github.com/stanfordnlp/stanza). Please put the library in folder DataProcessor/.
 
 ```
 $ cd DataProcessor/
 $ sudo pip install pexpect unidecode
-$ git clone git://github.com/dnc1994/stanford-corenlp-python.git
-$ cd stanford-corenlp-python
-$ python setup.py install
-$ cd corenlp
-$ wget http://nlp.stanford.edu/software/stanford-corenlp-full-2015-04-20.zip
-$ unzip stanford-corenlp-full-2015-04-20.zip
+$ git clone git@github.com:stanfordnlp/stanza.git
+$ cd stanza
+$ pip install -e .
+$ wget http://nlp.stanford.edu/software/stanford-corenlp-full-2016-10-31.zip
+$ unzip stanford-corenlp-full-2016-10-31.zip
 ```
 
 ## Build 
@@ -43,6 +42,7 @@ Please put the data files in corresponding subdirectories in Data/. You could do
 Run AFET for fine-grained entity typing on BBN dataset
 
 ```
+$ java -mx4g -cp "DataProcessor/stanford-corenlp-full-2016-10-31/*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer
 $ ./run.sh  
 ```
 
