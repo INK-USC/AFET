@@ -1,7 +1,9 @@
+__author__ = 'wenqihe'
 
 import json
 import sys
 from stanza.nlp.corenlp import CoreNLPClient
+
 
 class NLPParser(object):
     """
@@ -33,11 +35,10 @@ class NLPParser(object):
             tuples.append((word, pos, dep))
         return tuples
 
-def parse(filename, output):
-    with open(filename) as f, open(output, 'w') as g:
+def parse(sentences, g, lock):
         parser = NLPParser()
         count=0
-        for line in f:
+        for line in sentences:
             sent = json.loads(line.strip('\r\n'))
             tokens = sent['tokens']
             try:
@@ -45,7 +46,9 @@ def parse(filename, output):
                 if len(tuples) == 1 and tuples[0][0] == tokens:
                     sent['pos'] = tuples[0][1]
                     sent['dep'] = tuples[0][2]
+                    lock.acquire()
                     g.write(json.dumps(sent)+'\n')
+                    lock.release()
                 else:
                     new_tokens = tuples[0][0]
                     new_pos = tuples[0][1]
@@ -67,10 +70,13 @@ def parse(filename, output):
                     sent['pos'] = new_pos
                     sent['dep'] = new_dep
                     sent['mentions'] = mentions
+                    lock.acquire()
                     g.write(json.dumps(sent)+'\n')
+                    lock.release()
             except Exception as e:
-                print e.message, e.args
-                print sent['fileid'], sent['senid']
+                    print 'fileid:', sent['fileid'], 'senid:', sent['senid']
+                    print e
+
 
 def find_index(sen_split, word_split):
     index1 = -1

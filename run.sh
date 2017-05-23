@@ -9,7 +9,7 @@ mkdir -pv $Outdir
 
 ### Generate features
 echo 'Step 1 Generate Features'
-python DataProcessor/feature_generation.py $Data  
+python DataProcessor/feature_generation.py $Data 20 
 echo ' '
 
 ### Train AFET
