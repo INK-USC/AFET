@@ -73,4 +73,7 @@ if __name__ == "__main__":
     ### Evluate embedding predictions
     predictions = load_labels('Results/' + _data + '/mention_type_' + _method + '_' + _emb_mode + '.txt')
     print 'Predicted labels (embedding):'
-    print '%f\t%f\t%f\t%f\t%f\t%f\t%f\t' % evaluate(predictions, ground_truth)
+    accuracy,macro_precision,macro_recall,macro_f1,micro_precision,micro_recall,micro_f1 = evaluate(predictions, ground_truth)
+    print 'accuracy:', accuracy
+    print 'macro_precision, macro_recall, macro_f1', macro_precision, macro_recall, macro_f1
+    print 'micro_precision,micro_recall,micro_f1', micro_precision, micro_recall, micro_f1
