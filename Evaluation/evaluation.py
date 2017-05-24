@@ -75,5 +75,5 @@ if __name__ == "__main__":
     print 'Predicted labels (embedding):'
     accuracy,macro_precision,macro_recall,macro_f1,micro_precision,micro_recall,micro_f1 = evaluate(predictions, ground_truth)
     print 'accuracy:', accuracy
-    print 'macro_precision, macro_recall, macro_f1', macro_precision, macro_recall, macro_f1
-    print 'micro_precision,micro_recall,micro_f1', micro_precision, micro_recall, micro_f1
+    print 'macro_precision, macro_recall, macro_f1:', macro_precision, macro_recall, macro_f1
+    print 'micro_precision, micro_recall, micro_f1:', micro_precision, micro_recall, micro_f1
