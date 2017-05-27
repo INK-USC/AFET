@@ -14,7 +14,7 @@ Method | Accuray | Macro-F1 | Micro-F1
 HYENA ([Yosef et al., 2012](http://aclweb.org/anthology/C/C12/C12-2133.pdf)) | 0.288 | 0.528 | 0.506 
 FIGER ([Ling & Weld, 2012](http://xiaoling.github.io/pubs/ling-aaai12.pdf)) | 0.474 | 0.692 | 0.655 
 FIGER + All Filter ([Gillick et al., 2014](https://arxiv.org/pdf/1412.1820.pdf)) |0.453 | 0.648 | 0.582 
-HNM ([Dong et al., 2015](https://arxiv.org/pdf/1412.1820.pdf)) |0.237 | 0.409 | 0.417
+HNM ([Dong et al., 2015](https://www.ijcai.org/Proceedings/15/Papers/179.pdf)) |0.237 | 0.409 | 0.417
 WSABIE ([Yogatama et al,., 2015](http://www.cs.cmu.edu/~dyogatam/papers/yogatama+etal.acl2015short.pdf)) | 0.480 | 0.679 | 0.657 
 **AFET** ([Ren et al., 2016](https://arxiv.org/pdf/1602.05307.pdf)) | **0.533** | **0.693** | **0.664**
 
