@@ -7,15 +7,16 @@ Given a text corpus with entity mentions *detected* and *heuristically labeled* 
 An end-to-end tool (corpus to typed entities) is under development. Please keep track of our updates.
 
 ## Performance
-Performance of *fine-grained entity type classification* over **Wiki** ([Ling & Weld, 2012](http://xiaoling.github.io/pubs/ling-aaai12.pdf)) dataset. We applied PLE to clean training data and ran FIGER ([Ling & Weld, 2012](http://xiaoling.github.io/pubs/ling-aaai12.pdf)) and over the de-noised labeled data to train type classifiers (thus the **FIGER + PLE** is the name of our final system).
+Performance of *fine-grained entity type classification* over **Wiki** ([Ling & Weld, 2012](http://xiaoling.github.io/pubs/ling-aaai12.pdf)) dataset.
 
 Method | Accuray | Macro-F1 | Micro-F1 
 -------|-----------|--------|----
 HYENA ([Yosef et al., 2012](http://aclweb.org/anthology/C/C12/C12-2133.pdf)) | 0.288 | 0.528 | 0.506 
-WSABIE ([Yogatama et al,., 2015](http://www.cs.cmu.edu/~dyogatam/papers/yogatama+etal.acl2015short.pdf)) | 0.480 | 0.679 | 0.657 
 FIGER ([Ling & Weld, 2012](http://xiaoling.github.io/pubs/ling-aaai12.pdf)) | 0.474 | 0.692 | 0.655 
 FIGER + All Filter ([Gillick et al., 2014](https://arxiv.org/pdf/1412.1820.pdf)) |0.453 | 0.648 | 0.582 
-**FIGER + PLE** ([Ren et al., 2016](https://arxiv.org/pdf/1602.05307.pdf)) | **0.599** | **0.763** | **0.749**
+HNM ([Dong et al., 2015](https://arxiv.org/pdf/1412.1820.pdf)) |0.237 | 0.409 | 0.417
+WSABIE ([Yogatama et al,., 2015](http://www.cs.cmu.edu/~dyogatam/papers/yogatama+etal.acl2015short.pdf)) | 0.480 | 0.679 | 0.657 
+**AFET** ([Ren et al., 2016](https://arxiv.org/pdf/1602.05307.pdf)) | **0.533** | **0.693** | **0.664**
 
 
 ## System Output
@@ -39,11 +40,6 @@ $ unzip stanford-corenlp-full-2016-10-31.zip
 $ rm stanford-corenlp-full-2016-10-31.zip
 ```
 
-
-## Makefile
-```
-$ cd AFET/Model; make
-```
 ## Data
 
 We pre-processed three public datasets (train/test sets) to our JSON format. We ran [Stanford NER](https://nlp.stanford.edu/software/CRF-NER.shtml) on training set to detect entity mentions, and performed distant supervision using [DBpediaSpotlight](https://github.com/dbpedia-spotlight/dbpedia-spotlight) to assign type labels:
@@ -54,6 +50,11 @@ We pre-processed three public datasets (train/test sets) to our JSON format. We 
 - `Type hierarches` for each dataset are included.
 - Please put the data files in the corresponding subdirectories under `AFET/Data/`.
 
+
+## Makefile
+```
+$ cd AFET/Model; make
+```
 
 ## Default Run
 Run AFET for fine-grained entity typing on BBN dataset
@@ -68,6 +69,16 @@ Dataset to run on.
 ```
 Data="BBN"
 ```
+- concrete parameters for running each dataset can be found in the README in corresponding data folder under `AFET/Data/`
+
+## Evaluation
+Evaluate prediction results (by classifier trained on de-noised data) over test data
+```
+python Evaluation/emb_prediction.py $Data pl_warp bipartite maximum cosine 0.25
+python Evaluation/evaluation.py $Data pl_warp bipartite
+```
+- python Evaluation/evaluation.py -DATA(BBN/ontonotes/FIGER) -METHOD(hple/...) -EMB_MODE(hete_feature)
+
 
 ## Publication
 Please cite the following paper if you find the codes and datasets are helpful:
