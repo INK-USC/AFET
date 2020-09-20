@@ -20,7 +20,7 @@ WSABIE ([Yogatama et al,., 2015](http://www.cs.cmu.edu/~dyogatam/papers/yogatama
 
 
 ## System Output
-The output on [BBN dataset](https://drive.google.com/file/d/0B2ke42d0kYFfTEs0RGpuanRLQlE/view?usp=sharing) can be found [here](https://raw.githubusercontent.com/shanzhenren/PLE/master/Results/BBN/predictionInText_hple_hete_feature_perceptron.txt). Each line is a sentence in the test data of BBN, with entity mentions and their fine-grained entity typed identified.
+The output on [BBN dataset](https://drive.google.com/file/d/0B2ke42d0kYFfNkk0d1JYN3hXTGc/view?usp=sharing) can be found [here](https://raw.githubusercontent.com/shanzhenren/PLE/master/Results/BBN/predictionInText_hple_hete_feature_perceptron.txt). Each line is a sentence in the test data of BBN, with entity mentions and their fine-grained entity typed identified.
 
 
 ## Dependency
@@ -45,7 +45,7 @@ $ rm stanford-corenlp-full-2016-10-31.zip
 We pre-processed three public datasets (train/test sets) to our JSON format. We ran [Stanford NER](https://nlp.stanford.edu/software/CRF-NER.shtml) on training set to detect entity mentions, and performed distant supervision using [DBpediaSpotlight](https://github.com/dbpedia-spotlight/dbpedia-spotlight) to assign type labels:
    * **Wiki** ([Ling & Weld, 2012](http://xiaoling.github.io/pubs/ling-aaai12.pdf)): 1.5M sentences sampled from 780k Wikipedia articles. 434 news sentences are manually annotated for evaluation. 113 entity types are organized into a 2-level hierarchy ([download JSON](https://drive.google.com/file/d/0B2ke42d0kYFfVC1fazdKYnVhYWs/view?usp=sharing))
    * **OntoNotes** ([Weischedel et al., 2011](https://catalog.ldc.upenn.edu/ldc2013t19)): 13k news articles with 77 of them are manually labeled for evaluation. 89 entity types are organized into a 3-level hierarchy. ([download JSON](https://drive.google.com/file/d/0B2ke42d0kYFfN1ZSVExLNlYwX1E/view?usp=sharing))
-   * **BBN** ([Weischedel et al., 2005](https://catalog.ldc.upenn.edu/ldc2005t33)): 2,311 WSJ articles that are manually annotated using 93 types in a 2-level hierarchy. ([download JSON](https://drive.google.com/file/d/0B2ke42d0kYFfTEs0RGpuanRLQlE/view?usp=sharing))
+   * **BBN** ([Weischedel et al., 2005](https://catalog.ldc.upenn.edu/ldc2005t33)): 2,311 WSJ articles that are manually annotated using 93 types in a 2-level hierarchy. ([download JSON](https://drive.google.com/file/d/0B2ke42d0kYFfNkk0d1JYN3hXTGc/view?usp=sharing))
 
 - `Type hierarches` for each dataset are included.
 - Please put the data files in the corresponding subdirectories under `AFET/Data/`.
